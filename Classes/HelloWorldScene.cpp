@@ -54,23 +54,24 @@ bool HelloWorld::init()
     // add a label shows "Hello World"
     // create and initialize a label
     
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    
-    // position the label on the center of the screen
-    label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height));
 
-    // add the label as a child to this layer
-    this->addChild(label, 1);
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
+   
+    auto cat = Sprite::create("cat.png");
 
     // position the sprite on the center of the screen
-    sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    cat->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
+    cat->setScale(0.3);
 
     // add the sprite as a child to this layer
-    this->addChild(sprite, 0);
+    this->addChild(cat, 0);
+    
+    auto moveBy = MoveBy::create(2, Vec2(50,10));
+    cat->runAction(moveBy);
+    
+    // Move a sprite to a specific location over 2 seconds.
+    auto moveTo = MoveTo::create(2, Vec2(50,10));
+    cat->runAction(moveTo);
+    
     
     return true;
 }
